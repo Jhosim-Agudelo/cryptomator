@@ -26,6 +26,14 @@ public class KeychainManagerTest {
 		Assertions.assertArrayEquals("asd".toCharArray(), keychainManager.loadPassphrase("test"));
 	}
 
+	@Test
+	public void testIsSupported() {
+		KeychainManager keychainManager = new KeychainManager(new SimpleObjectProperty<>(new MapKeychainAccess()));
+		Assertions.assertTrue(keychainManager.isSupported());
+		keychainManager = new KeychainManager(new SimpleObjectProperty<>(null));
+		Assertions.assertFalse(keychainManager.isSupported());
+	}
+
 	@Nested
 	public static class WhenObservingProperties {
 
